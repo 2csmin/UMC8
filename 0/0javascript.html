@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        h1 {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        hr {
+            width: 90%;
+        }
+
+        .input {
+            text-align: center;
+        }
+
+        input {
+            height: 30px;
+            width: 60%;
+            margin: 10px 0;
+        }
+
+        .list {
+            display: flex;
+        }
+
+        .list > div {
+            flex: 1;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>UMC Study Plan</h1>
+        <hr>
+        <div class="input">
+            <input id="todoInput" type="text" placeholder="스터디 계획을 작성해보세요!">
+            <button onclick="addtodo()">추가</button>
+        </div>
+        <div class="list">
+            <div>
+                <h4>해야 할 일</h4>
+                <ul id="todoList"></ul>
+            </div>
+            <div>
+                <h4>해낸 일</h4>
+                <ul id="doneList"></ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addtodo() {
+            const input = document.getElementById("todoInput");
+            const value = input.value;
+
+            if (value !== "") {
+                const li = document.createElement('li');
+                li.innerText = value;
+
+                li.addEventListener('click', function() {
+                    movetodone(li);
+                });
+
+                document.getElementById('todoList').appendChild(li);
+                input.value = "";
+
+            } else {
+                alert("할 일을 입력하세요");
+            }
+        }
+
+        function movetodone(item) {
+            item.remove();
+
+            const doneItem = document.createElement('li');
+            doneItem.innerText = item.innerText;
+
+            doneItem.addEventListener('click', function() {
+                removetodo(doneItem);
+            });
+
+            document.getElementById('doneList').appendChild(doneItem);   
+        }
+
+        function removetodo(item) {
+            item.remove();
+        }
+    </script>
+</body>
+</html>
