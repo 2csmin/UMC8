@@ -20,7 +20,7 @@ export const getLpList = async (
 export const getLpDetail = async ({
   lpId,
 }: RequestLpDto): Promise<ResponseLpDto> => {
-  const { data } = await axiosInstance.get(`/v1/lps/${lpId}`);
+  const { data } = await axiosInstance.delete(`/v1/lps/${lpId}`);
 
   return data;
 };
